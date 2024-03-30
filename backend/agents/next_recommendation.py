@@ -17,13 +17,12 @@ Give 3-4 similar recommended searches based on this search:
 prompt = ChatPromptTemplate.from_template(template=prompt_template)
     
 
-def get_answer(our_text):
+def get_next_recommendation(our_text):
     messages=prompt.format_messages(
         our_text= our_text
     )
     return model.invoke(messages)
 
-ans = get_answer("Give me youtube videos")
-print(ans)
+
 
     

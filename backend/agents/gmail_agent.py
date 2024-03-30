@@ -3,12 +3,12 @@ from langchain.agents.agent_toolkits import GmailToolkit
 toolkit = GmailToolkit() 
 
 import os
-os.environ['OPENAI_API_KEY'] = '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'
+OPENAI_API_KEY = os.getenv("OPEN_AI_API_KEY")
 
 from langchain import OpenAI
 from langchain.agents import initialize_agent, AgentType
 
-llm = OpenAI(temperature=0)
+llm = OpenAI(temperature=0, openai_api_key=OPENAI_API_KEY)
 
 agent = initialize_agent(
     tools=toolkit.get_tools(),
@@ -16,5 +16,5 @@ agent = initialize_agent(
     agent=AgentType.STRUCTURED_CHAT_ZERO_SHOT_REACT_DESCRIPTION,
 )
 
-print(agent.run("Send a email to srinathreddy239@gmail.com saying Hello! and send emailafter 5 minute. Do not stop script execution"))
-
+def send_mail(task):
+    return agent.run(task)

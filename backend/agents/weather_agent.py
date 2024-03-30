@@ -3,8 +3,9 @@ from langchain.llms import OpenAI
 from weather_api_tool import get_weather  # Import the tool
 
 import os
-os.environ["OPENAI_API_KEY"]="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"
-llm = OpenAI(temperature=0.9)  # Load LLM model with desired temperature
+OPENAI_API_KEY = os.getenv("OPEN_AI_API_KEY")
+
+llm = OpenAI(temperature=0.9, openai_api_key=OPENAI_API_KEY)  # Load LLM model with desired temperature
 agent = initialize_agent(llm=llm, tools=[get_weather])  # Create agent with the LLM and tool
 
 def get_weather():
