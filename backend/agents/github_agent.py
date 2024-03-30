@@ -29,6 +29,7 @@ print("Available tools:")
 for tool in tools:
     print("\t" + tool.name)
 
-agent.run(
-    "You have the software engineering capabilities of a Google Principle engineer. You are tasked with creating a new file"
-)
+def github_action(task):
+    return agent.run(
+    f"You have the software engineering capabilities of a Google Principle engineer. You are tasked with {task}"
+    )

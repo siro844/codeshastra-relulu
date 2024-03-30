@@ -6,6 +6,7 @@ github.pem
 credentials.json
 account_key.json
 token.json
+secrets.json
 # C extensions
 *.so
 
