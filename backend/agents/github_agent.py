@@ -14,7 +14,7 @@ os.environ["GITHUB_APP_PRIVATE_KEY"] = pem_contents
 os.environ["GITHUB_APP_ID"] = "865914"
 os.environ["GITHUB_BRANCH"] = "main"
 os.environ["GITHUB_BASE_BRANCH"] = "main"
-github = GitHubAPIWrapper(github_repository="siro844/Spam-email-classifier",github_app_id="865914")
+github = GitHubAPIWrapper(github_repository="siro844/Automatic-Driving-Car",github_app_id="865914")
 toolkit = GitHubToolkit.from_github_api_wrapper(github)
 tools = toolkit.get_tools()
 
@@ -29,6 +29,6 @@ print("Available tools:")
 for tool in tools:
     print("\t" + tool.name)
 
-# agent.run(
-#     "Create pull requests to merge branches.title=miscellenaous,description=merge all the branches into main branch."
-# )
+agent.run(
+    "You have the software engineering capabilities of a Google Principle engineer. You are tasked with creating a new file"
+)
