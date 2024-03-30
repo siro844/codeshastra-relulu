@@ -14,7 +14,4 @@ beautifulsoup4
 langchain-community
 google-search-results
 youtube-search
-
-google-search-results
-youtube_search
 PyGithub
