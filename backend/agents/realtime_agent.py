@@ -10,17 +10,16 @@ os.environ["SERPAPI_API_KEY"] = "af5ce4a05b46dd2be9269279239d840d8c9b69b6a1cfabc
 tool = GoogleFinanceQueryRun(api_wrapper=GoogleFinanceAPIWrapper())
 os.environ["OPENAI_API_KEY"]=os.getenv("OPENAI_API_KEY")
 tool = YouTubeSearchTool()
-
 llm = ChatOpenAI(temperature=0, model="gpt-3.5-turbo")
 tools = load_tools(["serpapi"], llm=llm)
 tools.append(tool)
-print("Available tools:")
-for tool in tools:
-    print("\t" + tool.name)
-realtime_agent = initialize_agent(
-    tools,
-    llm,
-    agent=AgentType.STRUCTURED_CHAT_ZERO_SHOT_REACT_DESCRIPTION,
-    verbose=True,
-)
+
+def realtime_agent_function(query):
+    realtime_agent = initialize_agent(
+        tools,
+        llm,
+        agent=AgentType.STRUCTURED_CHAT_ZERO_SHOT_REACT_DESCRIPTION,
+        verbose=True,
+    )
+    return realtime_agent.run(query)
 
