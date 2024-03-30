@@ -91,6 +91,16 @@ export default function ChatUi() {
                         const response = await axios.post(
                             'http://localhost:5000/generate', { text: message });
                         console.log(response.data);
+                        const r = response.data;
+                        my_arr.push(r.output);
+                        setHistory((oldHistory) => [
+                         ...oldHistory,
+                        {
+                            role: "assistant",
+                            content: r.output,
+                        },
+                        ]);
+                        setLoading(false);
                     } catch (error) {
                         console.error('HTTP error', error);
                     }
