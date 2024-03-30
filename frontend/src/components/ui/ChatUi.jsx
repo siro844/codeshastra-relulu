@@ -85,19 +85,19 @@ export default function ChatUi() {
    
         useEffect(() => {
             const sendRequest = async () => {
-                if (!isRecording && message !== "") {
+                if (!isRecording && message !== "" && message !== null) {
                     try {
                         console.log("API call")
                         const response = await axios.post(
                             'http://localhost:5000/generate', { text: message });
                         console.log(response.data);
                         const r = response.data;
-                        my_arr.push(r.output);
+                        my_arr.push(r.output.output);
                         setHistory((oldHistory) => [
                          ...oldHistory,
                         {
                             role: "assistant",
-                            content: r.output,
+                            content: r.output.output,
                         },
                         ]);
                         setLoading(false);
