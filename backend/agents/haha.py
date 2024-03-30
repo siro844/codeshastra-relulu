@@ -35,8 +35,6 @@ def get_credentials():
 
 def get_events(creds):
     try:
-        if not isinstance(creds, Credentials):
-            creds = get_credentials()
         service = build("calendar", "v3", credentials=creds)
         now = datetime.datetime.utcnow().isoformat() + "Z"
         events_result = (
@@ -141,4 +139,4 @@ def calendar_agent_function(query):
         llm=llm
     )
     return calendar_agent.run(query)
-print(calendar_agent_function("Create a studying event for 40 mins"))
+# print(calendar_agent_function("Create a studying event for 40 mins"))

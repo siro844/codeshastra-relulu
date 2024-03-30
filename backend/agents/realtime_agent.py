@@ -23,5 +23,3 @@ def realtime_agent_function(query):
         steps=5,
     )
     return realtime_agent.run(query)
-
-print(realtime_agent_function("aaj mumbai me mausam kaisa hai"))

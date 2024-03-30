@@ -54,7 +54,7 @@ def verify_user():
         retrieved_data.append(doc.to_dict())
 
     saved_features = retrieved_data[0]
-    print(saved_features)
+    # print(saved_features)
     pitch, spectral_centroid, mfccs = extract_audio_features(audio_file)
     current_features = {
         'username': username,
@@ -81,7 +81,7 @@ def analyze():
         output = script_executing_agent.execute_script(text)
     else:
         output = realtime_agent.realtime_agent_function(text)
-    print(output)
+    # print(output)
     return jsonify({
         'output': output
     })
