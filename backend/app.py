@@ -3,8 +3,8 @@ from flask_cors import CORS
 from authentication.audio.audio_features_processing import extract_audio_features
 from authentication.audio.audio_features_comparison import compare_audio_features
 from authentication.database.firebase_db import db
-
-
+import subprocess
+import os
 app = Flask(__name__)
 CORS(app)  
 
@@ -66,6 +66,36 @@ def analyze():
     text = request.get_json()['text']
     # output = 
     # return jsonify({'result': processed_text})
+
+@app.route('/list_folders', methods=['POST'])
+def list_folders():
+    data = request.json
+    directory = data.get('directory')
+
+    if directory:
+        # Execute the appropriate command based on the operating system
+        if os.name == 'nt':  # Check if the operating system is Windows
+            command = 'dir /ad /b "{}"'.format(directory)
+        else:  # Assume Unix-like system
+            command = 'ls -l "{}" | grep "^d" | awk "{{print $NF}}"'.format(directory)
+
+        try:
+            # Execute the command and capture the output
+            result = subprocess.run(command, shell=True, capture_output=True, text=True)
+            output = result.stdout.strip()
+            error = result.stderr.strip()
+            
+            if output:
+                folders = output.split('\n')
+                return jsonify({'folders': folders})
+            elif error:
+                return jsonify({'error': error}), 500
+            else:
+                return jsonify({'folders': []})
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+    else:
+        return jsonify({'error': 'Directory not specified in the request.'}), 400
 
 if __name__ == '__main__':
     app.run(debug=True)
