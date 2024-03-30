@@ -20,6 +20,8 @@ def realtime_agent_function(query):
         llm,
         agent=AgentType.STRUCTURED_CHAT_ZERO_SHOT_REACT_DESCRIPTION,
         verbose=True,
+        steps=5,
     )
     return realtime_agent.run(query)
 
+print(realtime_agent_function("Weather in mumbai"))
