@@ -141,4 +141,3 @@ def calendar_agent_function(query):
         llm=llm
     )
     return calendar_agent.run(query)
-print(calendar_agent_function("Create a studying event for 40 mins"))
