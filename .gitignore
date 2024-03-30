@@ -2,8 +2,10 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+github.pem
+credentials.json
 account_key.json
+token.json
 # C extensions
 *.so
 
