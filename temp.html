@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time Speech-to-Text</title>
+</head>
+<body>
+    <button id="startButton">Start Recording</button>
+    <div id="output"></div>
+    <script>
+        const output = document.getElementById('output');
+        const startButton = document.getElementById('startButton');
+        
+        startButton.addEventListener('click', () => {
+            const recognition = new webkitSpeechRecognition();
+            recognition.continuous = true;
+            recognition.lang = 'en-US';
+            recognition.interimResults = true;
+            recognition.onresult = (event) => {
+                const transcript = event.results[event.results.length - 1][0].transcript;
+                output.textContent = transcript;
+            };
+            recognition.start();
+        });
+    </script>
+</body>
+</html>

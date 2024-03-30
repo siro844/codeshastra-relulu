@@ -16,5 +16,5 @@ agent = initialize_agent(
     agent=AgentType.STRUCTURED_CHAT_ZERO_SHOT_REACT_DESCRIPTION,
 )
 
-print(agent.run("Send a email to srinathreddy239@gmil.com sih team mein aayega kya"))
+print(agent.run("Send a email to srinathreddy239@gmail.com saying Hello! and send emailafter 5 minute. Do not stop script execution"))
 

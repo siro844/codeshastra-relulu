@@ -4,6 +4,7 @@ from authentication.audio.audio_features_processing import extract_audio_feature
 from authentication.audio.audio_features_comparison import compare_audio_features
 from authentication.database.firebase_db import db
 
+
 app = Flask(__name__)
 CORS(app)  
 
@@ -12,12 +13,22 @@ CORS(app)
 def extract():
     audio_file = request.files['audio_file']
     username = request.form['username']
+    music_genre = request.form['genre']
+    music_artist = request.form['artist']
+    news_type = request.form['news']
+    yt_content = request.form['content']
+
+
     pitch, spectral_centroid, mfccs = extract_audio_features(audio_file)
     data = {
         'username': username,
         'pitch': pitch,
         'spectral_centroid': spectral_centroid,
-        'mfccs': mfccs
+        'mfccs': mfccs,
+        'music_genre': music_genre,
+        'music_artist': music_artist,
+        'news_type': news_type,
+        'yt_content': yt_content
     }
     user_ref =  db.collection('users')
     user_ref.add(data)
@@ -49,6 +60,12 @@ def verify_user():
     return jsonify({
         'result': result
     })
+
+@app.route('/generate', methods=["POST"])
+def analyze():
+    text = request.get_json()['text']
+    # output = 
+    # return jsonify({'result': processed_text})
 
 if __name__ == '__main__':
     app.run(debug=True)
