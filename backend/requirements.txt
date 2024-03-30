@@ -12,5 +12,6 @@ google-auth-oauthlib
 google-auth-httplib2
 beautifulsoup4
 langchain-community
-google search results
+google-search-results
 youtube_search
+PyGithub
