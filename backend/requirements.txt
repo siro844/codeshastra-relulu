@@ -12,5 +12,5 @@ google-auth-oauthlib
 google-auth-httplib2
 beautifulsoup4
 langchain-community
-google search results
-youtube_search
+google-search-results
+youtube-search
