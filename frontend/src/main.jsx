@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 // import App from './App.jsx'
 import './index.css'
+import Chat from './Pages/Chat/Chat'
 import Layout from './Pages/Layout/Layout'
 import { createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom'
 import { Route } from 'react-router-dom'
@@ -17,7 +18,8 @@ const router=createBrowserRouter(
       <Route path='' element={<Home/> }/>
       <Route path='Guide' element={<Guide/>} />
       <Route path='Login' element={<Login/>} />
-      <Route path='Signup' element={<Signup/>} />
+      {/* <Route path='Chat' element={<Chat/>} /> */}
+      <Route path='Chat' element={<Chat/>} />
   
       {/* yea userId ka access we will get inside the element automatically using useParams */}
     </Route>
