@@ -5,6 +5,12 @@ from authentication.audio.audio_features_comparison import compare_audio_feature
 from authentication.database.firebase_db import db
 import subprocess
 import os
+import agents.super_agent as super_agent
+import agents.gmail_agent as gmail_agent
+import agents.github_agent as github_agent
+import agents.calendar_events as calendar_events
+import agents.script_executing_agent as script_executing_agent
+import agents.realtime_agent as realtime_agent
 app = Flask(__name__)
 CORS(app)  
 
@@ -64,8 +70,24 @@ def verify_user():
 @app.route('/generate', methods=["POST"])
 def analyze():
     text = request.get_json()['text']
-    # output = 
-    # return jsonify({'result': processed_text})
+    type = super_agent.super_agent_function(text)
+    if type == "Gmail":
+        output = gmail_agent.send_mail(text)
+    elif type == "Github":
+        output = github_agent.github_action(text)
+    elif type == "Calendar Events":
+        output = calendar_events.get_events(text)
+    elif type == "Script Execution":
+        output = script_executing_agent.execute_script(text)
+    else:
+        output = realtime_agent.realtime_agent_function(text)
+    print(output)
+    return jsonify({
+        'output': output
+    })
+    
+        
+
 
 @app.route('/list_folders', methods=['POST'])
 def list_folders():

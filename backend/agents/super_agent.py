@@ -9,7 +9,7 @@ from langchain.output_parsers import ResponseSchema
 from langchain.output_parsers import StructuredOutputParser
 
 from langchain_core.prompts import ChatPromptTemplate
-def super_agent_function():
+def super_agent_function(input):
     prompt_template = """
         You have to decide what category does the input belong to from the the follwing options:
         1. GitHub

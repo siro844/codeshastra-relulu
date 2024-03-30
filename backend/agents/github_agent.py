@@ -25,9 +25,9 @@ agent = initialize_agent(
     agent=AgentType.STRUCTURED_CHAT_ZERO_SHOT_REACT_DESCRIPTION,
     verbose=True,
 )
-print("Available tools:")
-for tool in tools:
-    print("\t" + tool.name)
+# print("Available tools:")
+# for tool in tools:
+#     print("\t" + tool.name)
 
 def github_action(task):
     return agent.run(
