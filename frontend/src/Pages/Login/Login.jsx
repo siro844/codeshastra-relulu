@@ -8,10 +8,10 @@ import { Card } from "@/components/ui/card"
 
 function Login() {
   return (
-<div className="w-full flex items-center justify-center">
-<div className="w-full lg:grid lg:min-h-[600px]  xl:min-h-[800px]">
+<div className="w-full flex h-[90vh] items-center justify-center">
+<div className="w-full lg:grid lg:min-h-[400px]  xl:min-h-[800px]">
       <div className="flex items-center justify-center py-12">
-        <Card className="mx-auto grid w-[350px] gap-6 p-12">
+        <Card className="mx-auto grid w-[400px] gap-6 p-12">
           <div className="grid gap-2 text-center">
             <h1 className="text-3xl font-bold">Login</h1>
             <p className="text-balance text-muted-foreground">

@@ -17,6 +17,7 @@ const router=createBrowserRouter(
       <Route path='' element={<Home/> }/>
       <Route path='Guide' element={<Guide/>} />
       <Route path='Login' element={<Login/>} />
+      <Route path='Signup' element={<Signup/>} />
   
       {/* yea userId ka access we will get inside the element automatically using useParams */}
     </Route>
