@@ -24,4 +24,3 @@ def realtime_agent_function(query):
     )
     return realtime_agent.run(query)
 
-print(realtime_agent_function("Weather in mumbai"))
