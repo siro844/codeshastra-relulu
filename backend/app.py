@@ -77,8 +77,6 @@ def analyze():
         output = github_agent.github_action(text)
     elif type == "Calendar Events":
         output = calendar_events.get_events(text)
-    elif type == "Script Execution":
-        output = script_executing_agent.execute_script(text)
     else:
         output = realtime_agent.realtime_agent_function(text)
     print(output)

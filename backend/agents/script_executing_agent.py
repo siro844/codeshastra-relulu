@@ -24,7 +24,7 @@ prompt = base_prompt.partial(instructions=instructions)
 
 agent = create_openai_functions_agent(ChatOpenAI(temperature=0, openai_api_key= OPENAI_API_KEY), tools, prompt)
 
-agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
+agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=False)
 
 def execute_script(input):
     agent_executor.invoke({f"input": {input}})
