@@ -1,8 +1,8 @@
 from flask import Flask, jsonify, request 
 from flask_cors import CORS
-from audio.audio_features_processing import extract_audio_features
-from audio.audio_features_comparison import compare_audio_features
-from database.firebase_db import db
+from authentication.audio.audio_features_processing import extract_audio_features
+from authentication.audio.audio_features_comparison import compare_audio_features
+from authentication.database.firebase_db import db
 
 app = Flask(__name__)
 CORS(app)  
