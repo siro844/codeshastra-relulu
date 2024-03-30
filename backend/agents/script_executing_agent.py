@@ -1,15 +1,17 @@
 from langchain import hub
 from langchain.agents import AgentExecutor
 from langchain_experimental.tools import PythonREPLTool
-
-tools = [PythonREPLTool()]
 import os
 from langchain.agents import create_openai_functions_agent
 from langchain_openai import ChatOpenAI
 
+tools = [PythonREPLTool()]
+
+
 from dotenv import load_dotenv
 load_dotenv()
 OPENAI_API_KEY = os.getenv("OPEN_AI_API_KEY")
+
 instructions = """You are an agent designed to write and execute python code to answer questions.
 You have access to a python REPL, which you can use to execute python code.
 If you get an error, debug your code and try again.
@@ -24,4 +26,5 @@ agent = create_openai_functions_agent(ChatOpenAI(temperature=0, openai_api_key= 
 
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 
-agent_executor.invoke({"input": "What is the 10th fibonacci number?"})
+def execute_script(input):
+    agent_executor.invoke({f"input": {input}})
