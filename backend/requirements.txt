@@ -14,3 +14,4 @@ beautifulsoup4
 langchain-community
 google search results
 youtube_search
+requests
