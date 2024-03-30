@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import LoadingDots from "./LoadingDots";
 import React from 'react';
 import useSpeechToText from 'react-hook-speech-to-text';
-
+import axios from 'axios';
 
 
 export default function ChatUi() {
@@ -28,8 +28,8 @@ export default function ChatUi() {
 
 
     const [message, setMessage] = useState("");
-    console.log(results);
-    console.log(message);
+    // console.log( "  This is the result ::"+results);
+    // console.log( "This is the "+message);
 
     const [history, setHistory] = useState([
 
@@ -65,34 +65,40 @@ export default function ChatUi() {
     const [loading, setLoading] = useState(false);
     const my_arr = [];
 
-    const handleClick = () => {
-
-        // console.log("hello")
-        startSpeechToText()
-
-        // fetch("http://127.0.0.1:5000/customer-service", {
-        //     method: "POST",
-        //     headers: { "Content-Type": "application/json" },
-        //     body: JSON.stringify({ query: message, history: history }),
-        // })
-        //     .then(async (res) => {
-        //         const r = await res.json();
-        //         console.log(r.answer);
-        //         my_arr.push(r.answer);
-        //         setHistory((oldHistory) => [
-        //             ...oldHistory,
-        //             {
-        //                 role: "assistant",
-        //                 content: r.answer,
-        //             },
-        //         ]);
-        //         setLoading(false);
-        //     })
-        //     .catch((err) => {
-        //         alert(err);
-        //     });
-    };
-
+        const handleClick = async () => {
+            if (!isRecording) {
+                await startSpeechToText();
+            }
+        
+            // // Check if the speech-to-text service is not being used
+            // if (!isRecording && message!=="") {
+            //     try {
+            //         console.log("API call")
+            //         const response = await axios.post(
+            //             'http://localhost:5000/generate', {text: message });
+            //         console.log(response.data);
+            //     } catch (error) {
+            //         console.error('HTTP error', error);
+            //     }
+            // }
+        };
+   
+        useEffect(() => {
+            const sendRequest = async () => {
+                if (!isRecording && message !== "") {
+                    try {
+                        console.log("API call")
+                        const response = await axios.post(
+                            'http://localhost:5000/generate', { text: message });
+                        console.log(response.data);
+                    } catch (error) {
+                        console.error('HTTP error', error);
+                    }
+                }
+            };
+    
+            sendRequest();
+        }, [isRecording, message]);
 
 
 
@@ -108,7 +114,7 @@ export default function ChatUi() {
     useEffect(() => {
         if (results.length > 0)
             setMessage(results[results.length - 1].transcript)
-    }, [])
+    }, [results])
 
     useEffect(() => {
 
@@ -231,7 +237,10 @@ export default function ChatUi() {
                             // disabled={!message || loading}
                             >
 
-                                hi
+<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-mic" viewBox="0 0 16 16">
+  <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5"/>
+  <path d="M10 8a2 2 0 1 1-4 0V3a2 2 0 1 1 4 0zM8 0a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V3a3 3 0 0 0-3-3"/>
+</svg>
                             </button>
                         </div>
                     </div>

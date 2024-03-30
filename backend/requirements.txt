@@ -12,6 +12,15 @@ google-auth-oauthlib
 google-auth-httplib2
 beautifulsoup4
 langchain-community
+<<<<<<< HEAD
 google search results
 youtube_search
 requests
+=======
+google-search-results
+youtube-search
+PyGithub
+langchain-experimental
+langchainhub
+langchain-openai
+>>>>>>> ac7125dbc297c7dcaa2dd069b19604c71e31462f
