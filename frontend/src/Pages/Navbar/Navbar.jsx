@@ -70,7 +70,7 @@ function Navbar() {
                             </li>
                      
                             <li>
-
+{/* 
                                 <NavLink
                                 to="/Signup"
                                     className={({isActive}) =>
@@ -80,6 +80,16 @@ function Navbar() {
                                     }
                                 >
                                   sign up
+                                </NavLink> */}
+                                <NavLink
+                                to="/Chat"
+                                    className={({isActive}) =>
+                                        `block py-2 pr-4 pl-3 duration-200 border-b 
+                                        ${isActive? "text-purple-900" : "text-gray-400"}
+                                        border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-purple-900 lg:p-0`
+                                    }
+                                >
+                                  Chat
                                 </NavLink>
                             </li>
                      
