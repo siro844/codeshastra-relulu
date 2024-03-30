@@ -16,7 +16,7 @@ export function TypeEffectDemo() {
     },
     {
       text: "Octave",
-      className: "text-blue-500 dark:text-purple-900",
+      className: "text-purple-900 dark:text-purple-900",
     },
   ];
   return (
