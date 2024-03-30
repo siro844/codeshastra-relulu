@@ -1,0 +1,8 @@
+Flask
+jsonify
+flask-cors
+librosa
+numpy
+firebase-admin
+
+
