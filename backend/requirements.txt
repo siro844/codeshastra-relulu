@@ -4,5 +4,12 @@ flask-cors
 librosa
 numpy
 firebase-admin
-
+langchain 
+openai
+python-dotenv
+google-api-python-client
+google-auth-oauthlib
+google-auth-httplib2
+beautifulsoup4
+langchain-community
 
