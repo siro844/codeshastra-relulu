@@ -9,7 +9,7 @@ token.json
 secrets.json
 # C extensions
 *.so
-
+node_modules/
 
 # Distribution / packaging
 .Python

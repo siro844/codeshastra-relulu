@@ -85,7 +85,7 @@ export default function ChatUi() {
    
         useEffect(() => {
             const sendRequest = async () => {
-                if (!isRecording && message !== "") {
+                if (!isRecording && message !== "" && message !== null) {
                     try {
                         console.log("API call")
                         const response = await axios.post(
@@ -102,7 +102,7 @@ export default function ChatUi() {
                          ...oldHistory,
                         {
                             role: "assistant",
-                            content: r.output,
+                            content: r.output.output,
                         },
                         ]);
                         setLoading(false);

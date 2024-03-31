@@ -1,4 +1,4 @@
-
+import { signInWithEmailAndPassword } from "firebase/auth"
 import { Link, Navigate } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
@@ -7,6 +7,10 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card } from "@/components/ui/card"
+import { signInWithPopup } from "firebase/auth"
+import { auth } from "@/config/firebase"
+import { googleProvider } from "@/config/firebase"
+
 
 function Login() {
   const Navigate = useNavigate()
@@ -15,20 +19,39 @@ function Login() {
   const [loggedIn, setLoggedIn] = useState(false)
   const [ren, setRen] = useState(false)
 
-
-  const HandleClick = () => {
-
-    // setLoggedIn((prev)=> !prev)
-    if (loggedIn) {
-
-      setRen(false)
-      
-      Navigate('/Signup')
-    }
-    else {
-      setRen(true)
-    }
+  const login=async ()=>{
+try{
+  await signInWithEmailAndPassword(auth,email,password)
+  console.log("i have logged in")
+  Navigate('/Chat')
+  const user=auth.currentUser
+  console.log(user)
+}catch(error){
+  console.log(error)
+}
   }
+
+const loginWithGoogle=async ()=>{
+  try{
+    await signInWithPopup(auth,googleProvider)
+  }
+  catch(error){
+    console.log(error)
+  }
+}
+  // const HandleClick = () => {
+
+  //   // setLoggedIn((prev)=> !prev)
+  //   if (loggedIn) {
+
+  //     setRen(false)
+      
+  //     Navigate('/Signup')
+  //   }
+  //   else {
+  //     setRen(true)
+  //   }
+  // }
 
 
   useEffect(() => {
@@ -36,6 +59,7 @@ function Login() {
     localStorage.setItem('loggedIn', JSON.stringify(loggedIn));
   }, [loggedIn]);
   return (
+    
     <div className="w-full flex h-[80vh]  items-center justify-center">
       <div className="w-full lg:grid h-[80vh]">
         <div className="flex items-center h-[80vh] justify-center py-12">
@@ -81,16 +105,16 @@ function Login() {
                     </div>
                     <Input id="password" type="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
                   </div>
-                  <Button type="submit" className="w-full">
+                  <Button type="submit" onClick={login} className="w-full">
                     Login
                   </Button>
-                  <Button variant="outline" className="w-full">
+                  <Button variant="outline" onClick={loginWithGoogle} className="w-full">
                     Login with Google
                   </Button>
                 </div>
                 <div className="mt-4 text-center text-sm">
                   Don&apos;t have an account?{" "}
-                  <button onClick={(e) => HandleClick(e)}>
+                  <button >
                     Sign up
                   </button>
                 </div>
