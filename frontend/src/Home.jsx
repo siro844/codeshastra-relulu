@@ -5,7 +5,7 @@ import { StickyScrollDemo } from './components/ui/StickyScrollDemo'
 import home1 from './home1.json'
 
 import { LayoutGridDemo } from './components/ui/LayoutGridDemo'
-import Navbar from './Pages/Navbar/Navbar'
+// import Navbar from './Pages/Navbar/Navbar'
 function Home() {
 
   return (

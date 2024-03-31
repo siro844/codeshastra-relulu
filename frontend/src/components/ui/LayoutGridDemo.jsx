@@ -62,7 +62,7 @@ const cards = [
     content: <SkeletonOne />,
     className: "md:col-span-2",
     thumbnail:
-    "https://img.freepik.com/premium-photo/3d-purple-search-barinternet-windowcreative-business-conceptminimal-style3d-rendering_265427-1074.jpg?w=740"},  
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDzliM670WxZOltoNx_L0EaRlQ1VbwbNtngapqtNSFGIlxLzYPZRXpRgbkCABRs1i7HqU&usqp=CAU"},  
     {
     id: 2,
     content: <SkeletonTwo />,
@@ -81,6 +81,6 @@ const cards = [
     content: <SkeletonFour />,
     className: "md:col-span-2",
     thumbnail:
-      "https://img.freepik.com/premium-vector/voice-assistant-concept-voice-recognition-sound-wave-imitation-voice-sound-personal-assistant_476325-1869.jpg?w=826",
+      "https://clevertap.com/wp-content/uploads/2018/11/voice-command-app-Blogheader-e1551339932560.png",
   },
 ];

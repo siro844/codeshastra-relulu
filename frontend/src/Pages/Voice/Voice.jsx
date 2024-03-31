@@ -1,5 +1,5 @@
 import React from 'react'
-import VoiceComp from '@/components/ui/VoiceComp'
+import VoiceComp from '@/VoiceComp'
 
 function Voice() {
   return (

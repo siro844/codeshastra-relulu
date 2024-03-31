@@ -9,6 +9,7 @@ import { useAuth } from '@/lib/auth';
 import { useNavigate } from "react-router-dom"
 
 
+
 function Navbar() {
     const [loggedIn, setloggedIn] = useState(false);
     const Navigate = useNavigate()
@@ -34,7 +35,7 @@ console.log(error)
                 <div className="flex flex-wrap justify-between loggedIn-center mx-auto max-w-screen-xl">
                     
                     <Link to="/" className="flex loggedIn-center">
-                        <span className='text-white text-[1.5rem]'>Logo</span>
+                        <span className='text-white text-[1.5rem]'><img className='w-[50px]' src="Octave.png" alt="Logo" /></span>
                     </Link>
                     <div className="flex loggedIn-center lg:order-2">
                         {user !== null ? <button onClick={logout} className='white text-white hover:bg-purple-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none'>LogOut</button>  :  <Link
@@ -56,7 +57,7 @@ console.log(error)
                        
                     </div>
                     <div
-                        className="hidden justify-between loggedIn-center w-full lg:flex lg:w-auto lg:order-1 ml-20" 
+                        className="hidden justify-between loggedIn-center w-full lg:flex lg:w-auto lg:order-1 ml-[230px]" 
                         id="mobile-menu-2"
                     >
                         <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
@@ -85,19 +86,7 @@ console.log(error)
                                   Guide
                                 </NavLink>
                             </li>
-                            <li>
-
-                                <NavLink
-                                to="/Preference"
-                                    className={({isActive}) =>
-                                        `block py-2 pr-4 pl-3 duration-200 border-b 
-                                        ${isActive? "text-purple-900" : "text-gray-400"}
-                                        border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-purple-900 lg:p-0`
-                                    }
-                                >
-                                  Preference
-                                </NavLink>
-                            </li>
+                          
                      
                             <li>
 {/* 
@@ -111,7 +100,7 @@ console.log(error)
                                 >
                                   sign up
                                 </NavLink> */}
-                                <NavLink
+                               {user !== null ?  <NavLink
                                 to="/Chat"
                                     className={({isActive}) =>
                                         `block py-2 pr-4 pl-3 duration-200 border-b 
@@ -119,18 +108,9 @@ console.log(error)
                                         border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-purple-900 lg:p-0`
                                     }
                                 >
-                                  Chat
-                                </NavLink>
-                                <NavLink
-                                to="/Voice"
-                                    className={({isActive}) =>
-                                        `block py-2 pr-4 pl-3 duration-200 border-b 
-                                        ${isActive? "text-purple-900" : "text-gray-400"}
-                                        border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-purple-900 lg:p-0`
-                                    }
-                                >
-                                  Voice
-                                </NavLink>
+                                  Assistant
+                                </NavLink>: <></>}
+                               
                             </li>
                      
                             

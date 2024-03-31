@@ -1,10 +1,12 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
+// import BlogPost from "./BlogPosts";
 // import { Send } from "react-feather";
 import LoadingDots from "./LoadingDots";
 import React from 'react';
 import useSpeechToText from 'react-hook-speech-to-text';
 import axios from 'axios';
+// import TextToSpeech from "./TextToSpeech";
 
 
 export default function ChatUi() {
@@ -99,12 +101,13 @@ export default function ChatUi() {
                             'http://localhost:5000/generate', { text: message });
                         console.log(response.data);
                         const recommend='';
-                        // if (history.length%10==0)
-                        // {
-                        //     const recommend = await axios.post(
-                        //     'http://localhost:5000/recommend', { text: message });
-                        // }
-                        my_arr.push(response.data.output);
+                        if (history.length%10==0)
+                        {
+                            const recommend = await axios.post(
+                            'http://localhost:5000/recommend', { text: message });
+                        }
+                       
+                        my_arr.push(r.output);
                         setHistory((oldHistory) => [
                             ...oldHistory,
                             {
@@ -112,6 +115,7 @@ export default function ChatUi() {
                                 content: response.data.output,
                             },
                         ]);
+                    //    <TextToSpeech text={r.output}/>
                         setLoading(false);
                     } catch (error) {
                         console.error('HTTP error', error);
@@ -143,6 +147,8 @@ export default function ChatUi() {
             lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
         }
     }, [history]);
+
+    
 
     return (
         <main className="h-screen bg-black p-6 flex flex-col">
@@ -199,6 +205,7 @@ export default function ChatUi() {
                                                     </div>
                                                 )}
                                             </div>
+                                            <TTS content={message.content}/>
                                         </div>
                                     );
                                 case "user":
