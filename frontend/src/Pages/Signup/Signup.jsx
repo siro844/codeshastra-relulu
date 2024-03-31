@@ -11,9 +11,10 @@ import { createUserWithEmailAndPassword,signInWithPopup } from "firebase/auth"
 import { async } from "@firebase/util"
 import Recorder from "@/components/ui/Recorder"
 import VoiceComp from "@/components/ui/VoiceComp"
+import { useNavigate } from "react-router-dom"
 
 function Signup() {
-
+const Navigate=useNavigate()
 const [email, setEmail]=useState("")
 const [password, setPassword]=useState("")
 
@@ -24,9 +25,11 @@ const [obtainedEmail, setObtainedEmail]= useState("")
 
 const signupfun= async () =>{
   try{
-    const data=await createUserWithEmailAndPassword(auth,email,password)
-    setObtainedEmail(data._tokenResponse.email)
-    setObtainedEmail(false)
+    await createUserWithEmailAndPassword(auth,email,password)
+    console.log('signin')
+    Navigate('/Preference')
+    console.log('singin')
+   
   }
   catch(error){
     console.log(error)
@@ -36,6 +39,9 @@ const signupfun= async () =>{
 const signInWithGoogle=async ()=>{
   try{
     await signInWithPopup(auth,googleProvider)
+    console.log('signin')
+    Navigate('/Preference')
+    console.log('singin')
   }
   catch(error){
     console.log(error)

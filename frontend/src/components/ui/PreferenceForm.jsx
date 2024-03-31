@@ -1,8 +1,11 @@
 import * as React from "react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
+import { useNavigate } from "react-router-dom"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import { db } from "@/config/firebase"
 import {
   Select,
   SelectContent,
@@ -18,8 +21,25 @@ import { CardHeader,Card,
 
 export function PreferenceForm() {
 
-   
+    const Navigate=useNavigate()
+   const preferenceRef= collection(db, "preference")
 
+
+const submitDoc=async ()=>{
+    try{
+        console.log("hi submit")
+        await addDoc(preferenceRef, {
+            branch: branch,
+            github: github,
+            gmail: gmail,
+            name: name,
+            tokens: secretTokens})
+            console.log("hi")
+            Navigate('/Chat')
+    }catch(error){
+console.log(error)
+    }
+}
 
 
     const [name, setName]=useState("")
@@ -58,7 +78,7 @@ export function PreferenceForm() {
       </CardContent>
       <CardFooter className="flex justify-between">
         
-        <Button  className="relative left-[110px]">submit</Button>
+        <Button  onClick={submitDoc} className="relative left-[110px]">submit</Button>
       </CardFooter>
     </Card>
   )

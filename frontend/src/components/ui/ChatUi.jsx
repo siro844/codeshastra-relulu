@@ -134,13 +134,13 @@ export default function ChatUi() {
     }, [history]);
 
     return (
-        <main className="h-screen bg-white p-6 flex flex-col">
+        <main className="h-screen bg-black p-6 flex flex-col">
             <div>
 
             </div>
-            <div className="flex flex-col gap-8 w-full items-center flex-grow max-h-full">
-                <h1 className=" text-4xl text-transparent font-extralight bg-clip-text bg-gradient-to-r from-violet-800 to-fuchsia-500">
-                    Customer Care Chat
+            <div className="flex flex-col gap-8 w-full  items-center flex-grow max-h-full">
+                <h1 className=" text-4xl text-transparent  font-extralight bg-clip-text bg-gradient-to-r from-violet-800 to-fuchsia-500">
+                    Your Voice Assistant
                 </h1>
                 <form
                     className="rounded-2xl border-purple-700 border-opacity-5  border lg:w-3/4 flex-grow flex flex-col bg-[url('/images/bg.png')] bg-cover max-h-full overflow-clip"
@@ -149,7 +149,7 @@ export default function ChatUi() {
                         handleClick();
                     }}
                 >
-                    <div className="overflow-y-scroll flex flex-col gap-5 p-10 h-full">
+                    <div className="overflow-y-scroll   flex flex-col gap-5 p-10 h-full">
                         {history.map((message, idx) => {
                             const isLastMessage = idx === history.length - 1;
                             switch (message.role) {

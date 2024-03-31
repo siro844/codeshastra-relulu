@@ -28,30 +28,32 @@ try{
   console.log(user)
 }catch(error){
   console.log(error)
+  setRen(true)
 }
   }
 
 const loginWithGoogle=async ()=>{
   try{
     await signInWithPopup(auth,googleProvider)
+    Navigate('/Chat')
   }
   catch(error){
     console.log(error)
   }
 }
-  // const HandleClick = () => {
+  const HandleClick = () => {
 
-  //   // setLoggedIn((prev)=> !prev)
-  //   if (loggedIn) {
 
-  //     setRen(false)
+    if (loggedIn) {
+
+      setRen(false)
       
-  //     Navigate('/Signup')
-  //   }
-  //   else {
-  //     setRen(true)
-  //   }
-  // }
+      Navigate('/Signup')
+    }
+    else {
+      setRen(true)
+    }
+  }
 
 
   useEffect(() => {
