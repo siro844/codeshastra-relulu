@@ -35,7 +35,7 @@ export default function ChatUi() {
 
     ]);
     const isInitialRender = useRef(true);
-
+    console.log(isRecording);
     console.log(history);
     useEffect(() => {
         if (results.length > 0)
@@ -85,20 +85,27 @@ export default function ChatUi() {
    
         useEffect(() => {
             const sendRequest = async () => {
-                if (!isRecording && message !== "" && message !== null) {
+                if (!isRecording && message !== "") {
+                    if (message.includes('email')) {
+                        const words = message.split(' ');
+                        const lastWord = words[words.length - 1].toLowerCase();
+                        const email = lastWord + '@gmail.com';
+                        console.log(email); // You can use the email variable here
+                    }
+        
                     try {
                         console.log("API call")
                         const response = await axios.post(
                             'http://localhost:5000/generate', { text: message });
                         console.log(response.data);
                         const r = response.data;
-                        my_arr.push(r.output.output);
+                        my_arr.push(r.output);
                         setHistory((oldHistory) => [
-                         ...oldHistory,
-                        {
-                            role: "assistant",
-                            content: r.output.output,
-                        },
+                            ...oldHistory,
+                            {
+                                role: "assistant",
+                                content: r.output,
+                            },
                         ]);
                         setLoading(false);
                     } catch (error) {
@@ -106,7 +113,6 @@ export default function ChatUi() {
                     }
                 }
             };
-    
             sendRequest();
         }, [isRecording, message]);
 
@@ -161,7 +167,7 @@ export default function ChatUi() {
                                             className="flex gap-2"
                                         >
                                             <img
-                                                src="images/assistant-avatar.png"
+                                                src="assistant.jpg"
                                                 className="h-12 w-12 rounded-full"
                                             />
                                             <div className="w-auto max-w-xl break-words bg-white rounded-b-xl rounded-tr-xl text-black p-6 shadow-[0_10px_40px_0px_rgba(0,0,0,0.15)]">
@@ -236,16 +242,15 @@ export default function ChatUi() {
                                     }
                                 }}
                             />
-                            <button
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    handleClick();
-                                }}
-                                className="flex w-14 h-14 items-center justify-center rounded-full px-3 text-sm  bg-violet-600 font-semibold text-white hover:bg-violet-700 active:bg-violet-800 absolute right-2 bottom-2 disabled:bg-violet-100 disabled:text-violet-400"
-                                type="submit"
-                                aria-label="Send"
-                            // disabled={!message || loading}
-                            >
+                           <button
+    onClick={(e) => {
+        e.preventDefault();
+        handleClick();
+    }}
+    className={`flex w-14 h-14 items-center justify-center rounded-full px-3 text-sm font-semibold text-white absolute right-2 bottom-2  ${isRecording ? 'bg-red-600' : 'bg-violet-600'}`}
+    type="submit"
+    aria-label="Send"
+>
 
 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-mic" viewBox="0 0 16 16">
   <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5"/>
