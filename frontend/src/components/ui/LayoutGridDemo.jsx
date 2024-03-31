@@ -62,7 +62,7 @@ const cards = [
     content: <SkeletonOne />,
     className: "md:col-span-2",
     thumbnail:
-    ""},  
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDzliM670WxZOltoNx_L0EaRlQ1VbwbNtngapqtNSFGIlxLzYPZRXpRgbkCABRs1i7HqU&usqp=CAU"},  
     {
     id: 2,
     content: <SkeletonTwo />,
@@ -81,6 +81,6 @@ const cards = [
     content: <SkeletonFour />,
     className: "md:col-span-2",
     thumbnail:
-      "https://images.unsplash.com/photo-1475070929565-c985b496cb9f?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://clevertap.com/wp-content/uploads/2018/11/voice-command-app-Blogheader-e1551339932560.png",
   },
 ];

@@ -52,7 +52,7 @@ export const StickyScroll = ({
       ref={ref}
     >
       <div className="div w-full relative flex items-start px-4">
-        <div className="max-w-2xl">
+        <div className="max-w-2xl h-[120vh]">
           {content.map((item, index) => (
             <div key={item.title + index} className="my-20">
               <motion.h2
@@ -87,7 +87,7 @@ export const StickyScroll = ({
           background: linearGradients[activeCard % linearGradients.length],
         }}
         className={cn(
-          "hidden lg:block h-80 w-[500px] rounded-md bg-white sticky top-[120px] right-[100px] overflow-hidden",
+          "hidden lg:block h-80 w-[500px] rounded-md bg-white sticky top-[130px] right-[100px] overflow-hidden",
           contentClassName
         )}
       >
