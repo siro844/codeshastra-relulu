@@ -19,4 +19,4 @@ def get_translated_text(text: str) -> str:
   response = requests.post(url, data=payload, headers=headers)
   print(response.json()['trans'])
 
-get_translated_text('the ipl score in kkr vs mi is 129/8 and mumbai is batting')
+# get_translated_text('the ipl score in kkr vs mi is 129/8 and mumbai is batting')
