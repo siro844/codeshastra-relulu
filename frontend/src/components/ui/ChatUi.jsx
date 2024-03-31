@@ -91,7 +91,12 @@ export default function ChatUi() {
                         const response = await axios.post(
                             'http://localhost:5000/generate', { text: message });
                         console.log(response.data);
-                        const r = response.data;
+                        const recommend='';
+                        if (history.length%10==0)
+                        {
+                            const recommend = await axios.post(
+                            'http://localhost:5000/recommend', { text: message });
+                        }
                         my_arr.push(r.output);
                         setHistory((oldHistory) => [
                          ...oldHistory,
