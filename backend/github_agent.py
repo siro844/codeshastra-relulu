@@ -31,5 +31,7 @@ agent = initialize_agent(
 
 def github_action(task):
     return agent.run(
-    f"You have the software engineering capabilities of a Google Principle engineer. You are tasked with {task}"
+    f"{task}"
     )
+
+# print(github_action(""))

@@ -90,7 +90,7 @@ export default function ChatUi() {
                         const words = message.split(' ');
                         const lastWord = words[words.length - 1].toLowerCase();
                         const email = lastWord + '@gmail.com';
-                        console.log(email); // You can use the email variable here
+                        console.log("This is the email"+email); // You can use the email variable here
                     }
         
                     try {
@@ -99,17 +99,17 @@ export default function ChatUi() {
                             'http://localhost:5000/generate', { text: message });
                         console.log(response.data);
                         const recommend='';
-                        if (history.length%10==0)
-                        {
-                            const recommend = await axios.post(
-                            'http://localhost:5000/recommend', { text: message });
-                        }
-                        my_arr.push(r.output);
+                        // if (history.length%10==0)
+                        // {
+                        //     const recommend = await axios.post(
+                        //     'http://localhost:5000/recommend', { text: message });
+                        // }
+                        my_arr.push(response.data.output);
                         setHistory((oldHistory) => [
                             ...oldHistory,
                             {
                                 role: "assistant",
-                                content: r.output,
+                                content: response.data.output,
                             },
                         ]);
                         setLoading(false);

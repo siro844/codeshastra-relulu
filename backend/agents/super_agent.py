@@ -28,3 +28,5 @@ def super_agent_function(input):
             )
     return llm.invoke(messages).content
 
+print(super_agent_function("List all the issues in my repo"))
+

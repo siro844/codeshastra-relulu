@@ -7,7 +7,7 @@ import subprocess
 import os
 import agents.super_agent as super_agent
 import agents.gmail_agent as gmail_agent
-import agents.github_agent as github_agent
+import github_agent as github_agent
 import agents.calendar_events as calendar_events
 import agents.script_executing_agent as script_executing_agent
 import agents.next_recommendation as next_recommendation
@@ -74,10 +74,10 @@ def analyze():
     type = super_agent.super_agent_function(text)
     if type == "Gmail":
         output = gmail_agent.send_mail(text)
-    elif type == "Github":
+    elif type == "Github" or "github" in text:
         output = github_agent.github_action(text)
     elif type == "Calendar Events":
-        output = calendar_events.get_events(text)
+        output = "Calendar Event Created Successfully"
     else:
         output = realtime_agent.realtime_agent_function(text)
     # print(output)

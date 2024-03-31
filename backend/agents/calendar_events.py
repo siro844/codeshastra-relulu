@@ -141,3 +141,4 @@ def calendar_agent_function(query):
         llm=llm
     )
     return calendar_agent.run(query)
+calendar_agent_function("Add an event for 2 hours")
