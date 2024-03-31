@@ -1,8 +1,9 @@
 import { AudioRecorder, useAudioRecorder } from 'react-audio-voice-recorder';
 
-const Recorder = ({obtainedEmail}) => {
+const Recorder = ({setAudioControl}) => {
   const recorderControls = useAudioRecorder()
   const addAudioElement = (blob) => {
+    setAudioControl(blob)
     const url = URL.createObjectURL(blob);
     const audio = document.createElement("audio");
     audio.src = url;
@@ -17,7 +18,8 @@ const Recorder = ({obtainedEmail}) => {
     <div>
         <div className='relative '>
       <AudioRecorder 
-      
+        showVisualizer
+
         onRecordingComplete={(blob) => addAudioElement(blob)}
         recorderControls={recorderControls}
       />

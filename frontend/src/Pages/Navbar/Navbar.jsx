@@ -1,16 +1,17 @@
 import React from 'react'
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { Link, NavLink } from "react-router-dom";
+import { Link, Navigate, NavLink } from "react-router-dom";
 import { auth } from '@/config/firebase';
 import { signOut } from 'firebase/auth';
 import { useAuth } from '@/lib/auth';
-import { Navigate } from 'react-router-dom';
+// import { Navigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom"
 
 
 function Navbar() {
     const [loggedIn, setloggedIn] = useState(false);
-    
+    const Navigate = useNavigate()
    const {user} = useAuth();
 
     
@@ -19,7 +20,7 @@ function Navbar() {
     const logout=async ()=>{
         try{
             await signOut(auth)
-            Navigate('/Home')
+       Navigate('/Login')
             
         }catch(error){
 console.log(error)
@@ -36,7 +37,7 @@ console.log(error)
                         <span className='text-white text-[1.5rem]'>Logo</span>
                     </Link>
                     <div className="flex loggedIn-center lg:order-2">
-                        {user !== null ? <button onClick={logout} className='text-white'>LogOut</button>  :  <Link
+                        {user !== null ? <button onClick={logout} className='white text-white hover:bg-purple-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none'>LogOut</button>  :  <Link
                             to="/Login"
                             className="white text-white hover:bg-purple-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
                         >
