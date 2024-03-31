@@ -1,6 +1,6 @@
 import { AudioRecorder, useAudioRecorder } from 'react-audio-voice-recorder';
 
-const Recorder = ({obtainedEmail}) => {
+const Recorder = () => {
   const recorderControls = useAudioRecorder()
   const addAudioElement = (blob) => {
     const url = URL.createObjectURL(blob);
