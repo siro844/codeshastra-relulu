@@ -3,8 +3,6 @@ from flask_cors import CORS
 from authentication.audio.audio_features_processing import extract_audio_features
 from authentication.audio.audio_features_comparison import compare_audio_features
 from authentication.database.firebase_db import db
-import subprocess
-import os
 import agents.super_agent as super_agent
 import agents.gmail_agent as gmail_agent
 import github_agent as github_agent
@@ -12,6 +10,8 @@ import agents.calendar_events as calendar_events
 import agents.script_executing_agent as script_executing_agent
 import agents.next_recommendation as next_recommendation
 import agents.realtime_agent as realtime_agent
+import agents.only_trans as trans_agent
+import agents.integrated_terminal as integrated_terminal
 app = Flask(__name__)
 CORS(app)  
 
@@ -72,12 +72,16 @@ def verify_user():
 def analyze():
     text = request.get_json()['text']
     type = super_agent.super_agent_function(text)
+    output=''
     if type == "Gmail":
         output = gmail_agent.send_mail(text)
     elif type == "Github" or "github" in text:
         output = github_agent.github_action(text)
     elif type == "Calendar Events":
         output = "Calendar Event Created Successfully"
+        output = calendar_events.get_events(text)
+    elif type == "Terminal":
+        output = integrated_terminal.execute(text)
     else:
         output = realtime_agent.realtime_agent_function(text)
     # print(output)
@@ -94,36 +98,6 @@ def recommend():
         'output': output
     })
 
-
-@app.route('/list_folders', methods=['POST'])
-def list_folders():
-    data = request.json
-    directory = data.get('directory')
-
-    if directory:
-        # Execute the appropriate command based on the operating system
-        if os.name == 'nt':  # Check if the operating system is Windows
-            command = 'dir /ad /b "{}"'.format(directory)
-        else:  # Assume Unix-like system
-            command = 'ls -l "{}" | grep "^d" | awk "{{print $NF}}"'.format(directory)
-
-        try:
-            # Execute the command and capture the output
-            result = subprocess.run(command, shell=True, capture_output=True, text=True)
-            output = result.stdout.strip()
-            error = result.stderr.strip()
-            
-            if output:
-                folders = output.split('\n')
-                return jsonify({'folders': folders})
-            elif error:
-                return jsonify({'error': error}), 500
-            else:
-                return jsonify({'folders': []})
-        except Exception as e:
-            return jsonify({'error': str(e)}), 500
-    else:
-        return jsonify({'error': 'Directory not specified in the request.'}), 400
 
 if __name__ == '__main__':
     app.run(debug=True)

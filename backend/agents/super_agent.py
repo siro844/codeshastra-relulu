@@ -17,6 +17,7 @@ def super_agent_function(input):
         3. Script Execution
         4. Calendar Events
         5. Gmail
+        6. Terminal (commands that you want to execute in terminal)
         Only answer with the category name this is extremely important.
         The following is the input:
         {input}.
