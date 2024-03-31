@@ -11,6 +11,8 @@ import Guide from './Pages/Guide/Guide'
 import Login from './Pages/Login/Login'
 import Signup from './Pages/Signup/Signup'
 import Preference from './Pages/Preference/Preference'
+import Voice from './Pages/Voice/Voice'
+import { AuthContextProvider } from './lib/auth'
 
 const router=createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +24,7 @@ const router=createBrowserRouter(
       <Route path='Signup' element={<Signup/>} />
       <Route path='Chat' element={<Chat/>} />
       <Route path='Preference' element={<Preference/>} />
+      <Route path='Voice' element={<Voice/>} />
   
       {/* yea userId ka access we will get inside the element automatically using useParams */}
     </Route>
@@ -30,6 +33,9 @@ const router=createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+<AuthContextProvider>
+
   <RouterProvider router={router}/>
+</AuthContextProvider>
   </React.StrictMode>,
 )

@@ -10,6 +10,7 @@ import agents.gmail_agent as gmail_agent
 import agents.github_agent as github_agent
 import agents.calendar_events as calendar_events
 import agents.script_executing_agent as script_executing_agent
+import agents.next_recommendation as next_recommendation
 import agents.realtime_agent as realtime_agent
 app = Flask(__name__)
 CORS(app)  
@@ -84,7 +85,14 @@ def analyze():
         'output': output
     })
     
-        
+@app.route('/recommend', methods=["POST"])
+def recommend():
+    json = request.get_json()
+    text = json.get('text')
+    output = next_recommendation.get_next_recommendation(text)
+    return jsonify({
+        'output': output
+    })
 
 
 @app.route('/list_folders', methods=['POST'])

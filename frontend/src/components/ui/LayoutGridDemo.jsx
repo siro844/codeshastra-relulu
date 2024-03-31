@@ -50,7 +50,7 @@ const SkeletonFour = () => {
       <p className="font-bold text-4xl text-white">Voice Command Hub</p>
       <p className="font-normal text-base text-white"></p>
       <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-        
+      An intuitive voice interface, enabling seamless execution of tasks including real-time updates, API integrations, email automation, and GitHub operations
       </p>
     </div>
   );
